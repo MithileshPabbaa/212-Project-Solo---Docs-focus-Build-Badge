@@ -11,5 +11,10 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Install JupyterBook
+        run: |
+        python -m pip install --upgrade pip
+        python -m pip install jupyter-book
+
       - name: Build JupyterBook
         run: jupyter-book build documentation
