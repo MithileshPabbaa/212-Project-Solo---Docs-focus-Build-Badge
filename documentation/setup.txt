@@ -1,0 +1,7 @@
+## Setup Instructions
+
+Run Command: g++ main.cpp interval_tree.cpp treap.cpp -o prog ./prog
+
+To run the programs, you must have an up to date IDE. These can work:
+Visual Studio Code (VSCode) ~ https://code.visualstudio.com/
+CLion - https://www.jetbrains.com/clion/
