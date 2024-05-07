@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Setup &#8212; My sample book</title>
+    <title>The Project &#8212; My sample book</title>
   
   
   
@@ -57,11 +57,11 @@
     <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'setup';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'project';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Examples" href="examples.html" />
-    <link rel="prev" title="Program" href="program.html" />
+    <link rel="next" title="Program" href="program.html" />
+    <link rel="prev" title="Welcome to my group’s 212 final project" href="intro.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -177,9 +177,9 @@
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="project.html">The Project</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">The Project</a></li>
 <li class="toctree-l1"><a class="reference internal" href="program.html">Program</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="setup.html">Setup</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
 </ul>
 
@@ -252,7 +252,7 @@
       
       
       
-      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fsetup.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fproject.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -282,7 +282,7 @@
       
       
       
-      <li><a href="_sources/setup.md" target="_blank"
+      <li><a href="_sources/project.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -353,7 +353,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -364,11 +366,21 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Setup</h1>
+    <h1>The Project</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#description">Description:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#usage">Usage:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#real-world-problem">Real-world Problem</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -378,25 +390,63 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="setup">
-<h1>Setup<a class="headerlink" href="#setup" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="the-project">
+<h1>The Project<a class="headerlink" href="#the-project" title="Link to this heading">#</a></h1>
+<section id="description">
+<h2>Description:<a class="headerlink" href="#description" title="Link to this heading">#</a></h2>
+<p>Our project aims to improve on retail POS (Point-Of-Scale) systems using Interval Trees, Bucket Sort, and Treap.
+By using these three data structures we will improve search efficiency, storage managment, and organization.</p>
+<p>Interval Trees -
+Used to manage employee time records effectively. This structure enables quick retrieval of information such as who was on duty at specific times,
+determining the latest staff presence (maximum interval value), and calculating total work hours per day. Organizing data in this manner,
+with each tree representing a day, optimizes these processes.</p>
+<p>Bucket Sort -
+To handle stock number data efficiently, we implemented a bucket sort algorithm. Employee inputs regarding item stock numbers will be stored as structured elements in a vector.
+Bucket sort will facilitate identifying necessary stock adjustments swiftly.</p>
+<p>Treap -
+Used to manage time-sensitive stock data. Once stock information is entered into the vector and sorted using bucket sort, a treap will be constructed,
+prioritizing lower stock numbers. This strategy allows store owners to make informed decisions regarding item ordering efficiently.</p>
+</section>
+<section id="usage">
+<h2>Usage:<a class="headerlink" href="#usage" title="Link to this heading">#</a></h2>
+<p>This program serves two primary functions:</p>
 <ul class="simple">
-<li><p>Copy the program files from the program page</p></li>
-<li><p>Make sure they are all in the same folder</p></li>
-<li><p>An up to date IDE that can run c++ is needed, something like Visual Studio Code or Clion</p></li>
-<li><p>g++ is also needed to be installed</p></li>
-<li><p>Then in terminal, to compile:</p></li>
+<li><p>Tracking employee’s weekly hours</p></li>
+<li><p>Monitoring stock numbers</p></li>
 </ul>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">g</span><span class="o">++</span> <span class="n">main</span><span class="o">.</span><span class="n">cpp</span> <span class="n">interval_tree</span><span class="o">.</span><span class="n">cpp</span> <span class="n">treap</span><span class="o">.</span><span class="n">cpp</span> <span class="o">-</span><span class="n">o</span> <span class="n">prog</span>
-</pre></div>
-</div>
+<p>Employee’s and items are represented as structs to facilitate and track storage of specific data.</p>
+<p>Employee Struct</p>
 <ul class="simple">
-<li><p>It can be called anything, we are using prog</p></li>
-<li><p>Then to run:</p></li>
+<li><p>Name, shift’s, and total hour’s worked</p></li>
 </ul>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">prog</span>
-</pre></div>
-</div>
+<p>Item Struct</p>
+<ul class="simple">
+<li><p>Name, gross profit per item, and total sale information</p></li>
+</ul>
+</section>
+<section id="real-world-problem">
+<h2>Real-world Problem<a class="headerlink" href="#real-world-problem" title="Link to this heading">#</a></h2>
+<p>Our program will augment preexisting POS systems present in retail environments.
+It will help improve efficiency and organization, while also adding functionality.
+Some sort of software for business, tracking transactions and employee work time.  It will be a program that employees
+utilize when they are leaving for the day.  Some functions will apply to employees of all shifts, such as the time clock,
+however, some functions will only be utilized at the end of the day, such as inputting stock numbers for various products.</p>
+<p>Interval Tree - Employees can enter time in/time out like a time clock.  These entries can be stored in an interval tree.
+Storing this information in this way will allow business owners to search for who was working at a certain time, the latest
+anyone was in the store (the maximum interval value present in each root node of each subtree), and the total number of hours
+worked on a given day.  Storing the data like this, with one tree representing one day, will make all of the aforementioned
+processes more efficient.</p>
+<p>Bucket Sort - Employees will also enter data about the stock numbers of various items.  These items will be stored as structs
+in a vector, which will be sorted using bucket sort in order to determine necessary stocking corrections.</p>
+<p>Treap - Because a treap is basically a combination between a BST and a priority queue, it is the perfect data structure to use
+when data that is time sensitive is being stored.  After our stock data is entered into its vector, and sorted with bucket sort,
+we can construct a treap, treating lower stock numbers as a higher priority.  This will allow the owner of the store to
+efficiently decide what items to prioritize when ordering.</p>
+<p>This program will have two main functions: tracking the work times of employees and tracking stock numbers.
+Both the employees and items will be structs, to allow for certain data to be stored for each.
+The employee structs will track name, shifts, and total hours worked.  The item structs will track name, gross
+profit per, and cumulative sales information.</p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -430,20 +480,20 @@ document.write(`
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="program.html"
+       href="intro.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Program</p>
+        <p class="prev-next-title">Welcome to my group’s 212 final project</p>
       </div>
     </a>
     <a class="right-next"
-       href="examples.html"
+       href="program.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Examples</p>
+        <p class="prev-next-title">Program</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -454,7 +504,22 @@ document.write(`
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"></div>
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#description">Description:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#usage">Usage:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#real-world-problem">Real-world Problem</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
