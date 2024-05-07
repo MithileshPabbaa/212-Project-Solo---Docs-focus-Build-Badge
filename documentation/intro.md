@@ -1,6 +1,6 @@
-# Welcome to my group's 212 final project
+# 212 Project Solo - Docs Focus Build Badge
 
-intro to be added
+Welcome to my group’s 212 final project
 
 ```{tableofcontents}
 ```
