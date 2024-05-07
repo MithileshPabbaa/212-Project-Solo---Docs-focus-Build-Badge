@@ -3,7 +3,7 @@
 
 title: 212 Project Solo - Docs Focus Build Badge
 author: Mithilesh Pabba
-logo: logo.png
+logo: pos.png
 
 # Force re-execution of notebooks on each build.
 # See https://jupyterbook.org/content/execute.html
