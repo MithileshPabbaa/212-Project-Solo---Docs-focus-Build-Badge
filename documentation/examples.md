@@ -46,6 +46,9 @@ Enter the end time in the same format.
 ```
 Then, the options will come again. Here is an example with the second.
 ```
+2
+```
+```
 Please enter the name of the item you would like to record:
 ```
 ```

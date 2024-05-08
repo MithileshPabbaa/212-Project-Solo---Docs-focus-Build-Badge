@@ -388,16 +388,20 @@ document.write(`
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;string&gt;</span>
 
+<span class="c1">// represents an employee with a name and total hours worked</span>
 <span class="k">struct</span><span class="w"> </span><span class="nc">Employee</span><span class="p">{</span>
 <span class="w">    </span><span class="n">string</span><span class="w"> </span><span class="n">name</span><span class="p">;</span>
 <span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">totalHoursWorked</span><span class="p">;</span>
 <span class="p">};</span>
 
+<span class="c1">// insertion for the bucket sort</span>
+<span class="c1">// @param input: The vector of Employee objects to be sorted</span>
 <span class="kt">void</span><span class="w"> </span><span class="nf">insertion</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">Employee</span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">input</span><span class="p">){</span>
 <span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">input</span><span class="p">.</span><span class="n">size</span><span class="p">();</span>
 <span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">size</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
 <span class="w">        </span><span class="n">Employee</span><span class="w"> </span><span class="n">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">input</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
 <span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">	</span><span class="c1">// move elements that are greater than key to one position ahead of their current position</span>
 <span class="w">        </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">j</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">input</span><span class="p">[</span><span class="n">j</span><span class="p">].</span><span class="n">totalHoursWorked</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">key</span><span class="p">.</span><span class="n">totalHoursWorked</span><span class="p">){</span>
 <span class="w">            </span><span class="n">input</span><span class="p">[</span><span class="n">j</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">input</span><span class="p">[</span><span class="n">j</span><span class="p">];</span>
 <span class="w">            </span><span class="n">j</span><span class="o">--</span><span class="p">;</span>
@@ -406,17 +410,27 @@ document.write(`
 <span class="w">    </span><span class="p">}</span>
 <span class="p">}</span>
 
+<span class="c1">// does bucket sort on a vector of employee objects based on total hours worked</span>
+<span class="c1">// @param input: The vector of Employee objects to be sorted</span>
+<span class="c1">// @param maxVal: The maximum total hours worked</span>
+<span class="c1">// @param minValue: The minimum total hours worked</span>
 <span class="kt">void</span><span class="w"> </span><span class="nf">bucketSort</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">Employee</span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">input</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">maxVal</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">minValue</span><span class="p">){</span>
 <span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">input</span><span class="p">.</span><span class="n">size</span><span class="p">();</span>
+<span class="w">    </span><span class="c1">// creates buckets of size for sorting</span>
 <span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">Employee</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">buckets</span><span class="p">(</span><span class="n">size</span><span class="p">);</span>
 
+<span class="w">    </span><span class="c1">// distribute employees into appropriate buckets</span>
 <span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">size</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
 <span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">bucketI</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">input</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">totalHoursWorked</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">minValue</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="n">maxVal</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">minValue</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
 <span class="w">        </span><span class="n">buckets</span><span class="p">[</span><span class="n">bucketI</span><span class="p">].</span><span class="n">push_back</span><span class="p">(</span><span class="n">input</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
 <span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// sort each bucket individually using insertion sort</span>
 <span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">size</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
 <span class="w">        </span><span class="n">insertion</span><span class="p">(</span><span class="n">buckets</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
 <span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// put the sorted buckets into the original vector</span>
 <span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">index</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 <span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">size</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
 <span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">buckets</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">size</span><span class="p">();</span><span class="w"> </span><span class="n">j</span><span class="o">++</span><span class="p">){</span>
@@ -425,19 +439,26 @@ document.write(`
 <span class="w">    </span><span class="p">}</span>
 <span class="p">}</span>
 
+<span class="c1">// main function for the Point of Sale (POS) system</span>
+<span class="c1">// - Initializes necessary data structures</span>
+<span class="c1">// - Handles user interactions with the system</span>
 <span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;POS System Initializing...&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
 
+<span class="w">    </span><span class="c1">// creates an interval tree for time clock and a treap for item counts</span>
 <span class="w">    </span><span class="n">IntTree</span><span class="o">*</span><span class="w"> </span><span class="n">timeClock</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">IntTree</span><span class="p">();</span>
 <span class="w">    </span><span class="n">Treap</span><span class="o">*</span><span class="w"> </span><span class="n">itemCounts</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Treap</span><span class="p">();</span>
 
+<span class="w">    </span><span class="c1">// variables to track the max and min shift length for bucket sorting</span>
 <span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">maxValue</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">-1</span><span class="p">;</span>
 <span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">minValue</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1000000</span><span class="p">;</span>
 
+<span class="w">    </span><span class="c1">// vector to store shift information</span>
 <span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">Employee</span><span class="o">&gt;</span><span class="w"> </span><span class="n">shiftLens</span><span class="p">;</span>
 
 <span class="w">    </span><span class="n">string</span><span class="w"> </span><span class="n">pass</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;1&quot;</span><span class="p">;</span>
 
+<span class="w">    </span><span class="c1">// user interaction with the POS system</span>
 <span class="w">    </span><span class="k">while</span><span class="p">(</span><span class="n">pass</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="s">&quot;0&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Please enter your password, or type 0 to quit program: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
 <span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">cin</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">pass</span><span class="p">;</span>
@@ -457,6 +478,7 @@ document.write(`
 <span class="w">                </span><span class="n">std</span><span class="o">::</span><span class="n">cin</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">numEm</span><span class="p">;</span>
 
 <span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">numEm</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;1&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">		    </span><span class="c1">// a new shift</span>
 <span class="w">                    </span><span class="n">string</span><span class="w"> </span><span class="n">beginStr</span><span class="p">;</span>
 <span class="w">                    </span><span class="n">string</span><span class="w"> </span><span class="n">endStr</span><span class="p">;</span>
 <span class="w">                    </span><span class="n">Employee</span><span class="w"> </span><span class="n">newEmployee</span><span class="p">;</span>
@@ -469,6 +491,7 @@ document.write(`
 <span class="w">                    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Please enter the length of your shift (in minutes):&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
 <span class="w">                    </span><span class="n">std</span><span class="o">::</span><span class="n">cin</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">newEmployee</span><span class="p">.</span><span class="n">totalHoursWorked</span><span class="p">;</span>
 
+<span class="w">		    </span><span class="c1">// update max and min shift times for bucket sorting</span>
 <span class="w">                    </span><span class="k">if</span><span class="p">(</span><span class="n">newEmployee</span><span class="p">.</span><span class="n">totalHoursWorked</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">maxValue</span><span class="p">){</span>
 <span class="w">                        </span><span class="n">maxValue</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">newEmployee</span><span class="p">.</span><span class="n">totalHoursWorked</span><span class="p">;</span>
 <span class="w">                    </span><span class="p">}</span>
@@ -478,12 +501,14 @@ document.write(`
 
 <span class="w">                    </span><span class="n">shiftLens</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">newEmployee</span><span class="p">);</span>
 
+<span class="w">		    </span><span class="c1">// sort the shifts using bucket sort</span>
 <span class="w">                    </span><span class="n">bucketSort</span><span class="p">(</span><span class="n">shiftLens</span><span class="p">,</span><span class="w"> </span><span class="n">maxValue</span><span class="p">,</span><span class="w"> </span><span class="n">minValue</span><span class="p">);</span>
 
 <span class="w">                    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Please enter the start time of your shift.  Format should be military time with no &quot;</span>
 <span class="w">                                 </span><span class="s">&quot;colon.  &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
 <span class="w">                    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Example: 2:43 pm should be entered as 1443.&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
 
+<span class="w">		    </span><span class="c1">// records the start and end times of the shift</span>
 <span class="w">                    </span><span class="n">std</span><span class="o">::</span><span class="n">cin</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">beginStr</span><span class="p">;</span>
 <span class="w">                    </span><span class="n">begin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">stoi</span><span class="p">(</span><span class="n">beginStr</span><span class="p">);</span>
 
@@ -492,10 +517,12 @@ document.write(`
 <span class="w">                    </span><span class="n">std</span><span class="o">::</span><span class="n">cin</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">endStr</span><span class="p">;</span>
 <span class="w">                    </span><span class="n">end</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">stoi</span><span class="p">(</span><span class="n">endStr</span><span class="p">);</span>
 
+<span class="w">		    </span><span class="c1">// insert the shift into the interval tree</span>
 <span class="w">                    </span><span class="n">timeClock</span><span class="o">-&gt;</span><span class="n">insert</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">make_pair</span><span class="p">(</span><span class="n">begin</span><span class="p">,</span><span class="w"> </span><span class="n">end</span><span class="p">));</span>
 <span class="w">                </span><span class="p">}</span>
 <span class="w">                </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">numEm</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;2&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                    </span><span class="n">string</span><span class="w"> </span><span class="n">item</span><span class="p">;</span>
+<span class="w">                    </span><span class="c1">// a new stock number</span>
+<span class="w">		    </span><span class="n">string</span><span class="w"> </span><span class="n">item</span><span class="p">;</span>
 <span class="w">                    </span><span class="kt">int</span><span class="w"> </span><span class="n">count</span><span class="p">;</span>
 <span class="w">                    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Please enter the name of the item you would like to record: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
 <span class="w">                    </span><span class="n">cin</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">item</span><span class="p">;</span>
@@ -503,6 +530,7 @@ document.write(`
 <span class="w">                    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Please enter the current quantity of the item: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
 <span class="w">                    </span><span class="n">cin</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">count</span><span class="p">;</span>
 
+<span class="w">		    </span><span class="c1">// inserts item counts into the treap</span>
 <span class="w">                    </span><span class="n">itemCounts</span><span class="o">-&gt;</span><span class="n">insert</span><span class="p">(</span><span class="n">item</span><span class="p">,</span><span class="w"> </span><span class="n">count</span><span class="p">);</span>
 <span class="w">                </span><span class="p">}</span>
 <span class="w">                </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">numEm</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;3&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
@@ -527,6 +555,7 @@ document.write(`
 <span class="w">                </span><span class="n">std</span><span class="o">::</span><span class="n">cin</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">numMan</span><span class="p">;</span>
 
 <span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">numMan</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;1&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">		    </span><span class="c1">// checks for overlapping shifts</span>
 <span class="w">                    </span><span class="n">vector</span><span class="o">&lt;</span><span class="n">pair</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">intervalList</span><span class="p">;</span>
 <span class="w">                    </span><span class="kt">int</span><span class="w"> </span><span class="n">data</span><span class="p">;</span>
 
@@ -534,6 +563,7 @@ document.write(`
 <span class="w">                    </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
 <span class="w">                    </span><span class="n">std</span><span class="o">::</span><span class="n">cin</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">data</span><span class="p">;</span>
 
+<span class="w">		    </span><span class="c1">// get overlapping shifts</span>
 <span class="w">                    </span><span class="n">timeClock</span><span class="o">-&gt;</span><span class="n">overlap</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="n">intervalList</span><span class="p">);</span>
 
 <span class="w">                    </span><span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">intervalList</span><span class="p">.</span><span class="n">empty</span><span class="p">()){</span>
@@ -549,7 +579,8 @@ document.write(`
 
 <span class="w">                </span><span class="p">}</span>
 <span class="w">                </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">numMan</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;2&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                    </span><span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">itemCounts</span><span class="o">-&gt;</span><span class="n">root</span><span class="p">){</span>
+<span class="w">                    </span><span class="c1">// check stock numbers</span>
+<span class="w">		    </span><span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">itemCounts</span><span class="o">-&gt;</span><span class="n">root</span><span class="p">){</span>
 <span class="w">                        </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;There are currently no items stored.&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
 <span class="w">                    </span><span class="p">}</span>
 <span class="w">                    </span><span class="k">else</span><span class="p">{</span>
@@ -558,6 +589,7 @@ document.write(`
 <span class="w">                    </span><span class="p">}</span>
 <span class="w">                </span><span class="p">}</span>
 <span class="w">                </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">numMan</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;3&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">		    </span><span class="c1">// find the longest working employee</span>
 <span class="w">                    </span><span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">shiftLens</span><span class="p">.</span><span class="n">empty</span><span class="p">()){</span>
 <span class="w">                        </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;The longest working employee is &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">shiftLens</span><span class="p">[</span><span class="n">shiftLens</span><span class="p">.</span><span class="n">size</span><span class="p">()</span><span class="mi">-1</span><span class="p">].</span><span class="n">name</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; with &quot;</span>
 <span class="w">                                  </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">shiftLens</span><span class="p">[</span><span class="n">shiftLens</span><span class="p">.</span><span class="n">size</span><span class="p">()</span><span class="mi">-1</span><span class="p">].</span><span class="n">totalHoursWorked</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; minutes worked.&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
@@ -597,26 +629,52 @@ document.write(`
 
 <span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
 
+<span class="c1">// node class for treap with a key and a priority</span>
 <span class="k">class</span><span class="w"> </span><span class="nc">TreapNode</span><span class="w"> </span><span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
 <span class="w">    </span><span class="n">string</span><span class="w"> </span><span class="n">key</span><span class="p">;</span>
 <span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">priority</span><span class="p">;</span>
 <span class="w">    </span><span class="n">TreapNode</span><span class="o">*</span><span class="w"> </span><span class="n">left</span><span class="p">;</span>
 <span class="w">    </span><span class="n">TreapNode</span><span class="o">*</span><span class="w"> </span><span class="n">right</span><span class="p">;</span>
+<span class="w">    </span><span class="c1">// constructor initializes a TreapNode with a given key and priority</span>
+<span class="w">    </span><span class="c1">// @param key: Key for the treap node</span>
+<span class="w">    </span><span class="c1">// @param priority: Priority for the node</span>
 <span class="w">    </span><span class="n">TreapNode</span><span class="p">(</span><span class="n">string</span><span class="w"> </span><span class="n">key</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">priority</span><span class="p">)</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">key</span><span class="p">(</span><span class="n">key</span><span class="p">),</span><span class="w"> </span><span class="n">priority</span><span class="p">(</span><span class="n">priority</span><span class="p">),</span><span class="w"> </span><span class="n">left</span><span class="p">(</span><span class="k">nullptr</span><span class="p">),</span><span class="w"> </span><span class="n">right</span><span class="p">(</span><span class="k">nullptr</span><span class="p">)</span><span class="w"> </span><span class="p">{}</span>
 <span class="p">};</span>
 
+<span class="c1">// treap class is a self balancing binary search tree with a heap property</span>
 <span class="k">class</span><span class="w"> </span><span class="nc">Treap</span><span class="w"> </span><span class="p">{</span>
 <span class="k">private</span><span class="o">:</span>
 <span class="k">public</span><span class="o">:</span>
+<span class="w">    </span><span class="c1">// default constructor initializing an empty treap</span>
 <span class="w">    </span><span class="n">Treap</span><span class="p">();</span>
 <span class="w">    </span><span class="n">TreapNode</span><span class="o">*</span><span class="w"> </span><span class="n">root</span><span class="p">;</span>
+<span class="w">    </span><span class="c1">// rotates a node to the right and returns the new root of the subtree</span>
+<span class="w">    </span><span class="c1">// @param node: The node to rotate</span>
+<span class="w">    </span><span class="c1">// @return The new root of the subtree after rotation</span>
 <span class="w">    </span><span class="n">TreapNode</span><span class="o">*</span><span class="w"> </span><span class="nf">rotate_right</span><span class="p">(</span><span class="n">TreapNode</span><span class="o">*</span><span class="w"> </span><span class="n">node</span><span class="p">);</span>
+<span class="w">    </span><span class="c1">// rotates a node to the left and returns the new root of the subtree</span>
+<span class="w">    </span><span class="c1">// @param node: The node to rotate</span>
+<span class="w">    </span><span class="c1">// @return The new root of the subtree after rotation</span>
 <span class="w">    </span><span class="n">TreapNode</span><span class="o">*</span><span class="w"> </span><span class="nf">rotate_left</span><span class="p">(</span><span class="n">TreapNode</span><span class="o">*</span><span class="w"> </span><span class="n">node</span><span class="p">);</span>
+<span class="w">    </span><span class="c1">// inserts a node into the treap with a given key and priority</span>
 <span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">insert</span><span class="p">(</span><span class="n">string</span><span class="w"> </span><span class="n">key</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">priority</span><span class="p">);</span>
 <span class="k">private</span><span class="o">:</span>
+<span class="w">    </span><span class="c1">// helper function for inserting a node into treap</span>
+<span class="w">    </span><span class="c1">// @param node: The root of the current subtree</span>
+<span class="w">    </span><span class="c1">// @param key: The key of the node to insert</span>
+<span class="w">    </span><span class="c1">// @param priority: The priority for the node</span>
+<span class="w">    </span><span class="c1">// @return The new root of the subtree after insertion</span>
 <span class="w">    </span><span class="n">TreapNode</span><span class="o">*</span><span class="w"> </span><span class="n">insert_helper</span><span class="p">(</span><span class="n">TreapNode</span><span class="o">*</span><span class="w"> </span><span class="n">node</span><span class="p">,</span><span class="w"> </span><span class="n">string</span><span class="w"> </span><span class="n">key</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">priority</span><span class="p">);</span>
+<span class="w">    </span><span class="c1">// helper function for searching a node with a given key in the treap</span>
+<span class="w">    </span><span class="c1">// @param node: The root of the current subtree</span>
+<span class="w">    </span><span class="c1">// @param key: The key to search for</span>
+<span class="w">    </span><span class="c1">// @return The found node, or nullptr if not found</span>
 <span class="w">    </span><span class="n">TreapNode</span><span class="o">*</span><span class="w"> </span><span class="nf">search_helper</span><span class="p">(</span><span class="n">TreapNode</span><span class="o">*</span><span class="w"> </span><span class="n">node</span><span class="p">,</span><span class="w"> </span><span class="n">string</span><span class="w"> </span><span class="n">key</span><span class="p">);</span>
+<span class="w">    </span><span class="c1">// helper function for deleting a node with a given key from the treap</span>
+<span class="w">    </span><span class="c1">// @param node: The root of the current subtree</span>
+<span class="w">    </span><span class="c1">// @param key: The key to delete</span>
+<span class="w">    </span><span class="c1">// @return The new root of the subtree after deletion</span>
 <span class="w">    </span><span class="n">TreapNode</span><span class="o">*</span><span class="w"> </span><span class="nf">delete_helper</span><span class="p">(</span><span class="n">TreapNode</span><span class="o">*</span><span class="w"> </span><span class="n">node</span><span class="p">,</span><span class="w"> </span><span class="n">string</span><span class="w"> </span><span class="n">key</span><span class="p">);</span>
 <span class="p">};</span>
 </pre></div>
@@ -626,10 +684,14 @@ document.write(`
 
 <span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
 
+<span class="c1">// default constructor initializing an empty Treap</span>
 <span class="n">Treap</span><span class="o">::</span><span class="n">Treap</span><span class="p">()</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">root</span><span class="p">(</span><span class="k">nullptr</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 
 <span class="p">}</span>
 
+<span class="c1">// rotates a node to the right and returns the new root of the subtree</span>
+<span class="c1">// @param node: The node to rotate</span>
+<span class="c1">// @return The new root of the subtree after rotation</span>
 <span class="n">TreapNode</span><span class="o">*</span><span class="w"> </span><span class="n">Treap</span><span class="o">::</span><span class="n">rotate_right</span><span class="p">(</span><span class="n">TreapNode</span><span class="o">*</span><span class="w"> </span><span class="n">node</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="n">TreapNode</span><span class="o">*</span><span class="w"> </span><span class="n">new_root</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">node</span><span class="o">-&gt;</span><span class="n">left</span><span class="p">;</span>
 <span class="w">    </span><span class="n">node</span><span class="o">-&gt;</span><span class="n">left</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">new_root</span><span class="o">-&gt;</span><span class="n">right</span><span class="p">;</span>
@@ -637,6 +699,9 @@ document.write(`
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">new_root</span><span class="p">;</span>
 <span class="p">}</span>
 
+<span class="c1">// rotates a node to the left and returns the new root of the subtree</span>
+<span class="c1">// @param node: The node to rotate</span>
+<span class="c1">// @return The new root of the subtree after rotation</span>
 <span class="n">TreapNode</span><span class="o">*</span><span class="w"> </span><span class="n">Treap</span><span class="o">::</span><span class="n">rotate_left</span><span class="p">(</span><span class="n">TreapNode</span><span class="o">*</span><span class="w"> </span><span class="n">node</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="n">TreapNode</span><span class="o">*</span><span class="w"> </span><span class="n">new_root</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">node</span><span class="o">-&gt;</span><span class="n">right</span><span class="p">;</span>
 <span class="w">    </span><span class="n">node</span><span class="o">-&gt;</span><span class="n">right</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">new_root</span><span class="o">-&gt;</span><span class="n">left</span><span class="p">;</span>
@@ -644,6 +709,11 @@ document.write(`
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">new_root</span><span class="p">;</span>
 <span class="p">}</span>
 
+<span class="c1">// helper function for inserting a node into the Treap</span>
+<span class="c1">// @param node: The root of the current subtree</span>
+<span class="c1">// @param key: The key of the node to insert</span>
+<span class="c1">// @param priority: The priority for the node</span>
+<span class="c1">// @return The new root of the subtree after insertion</span>
 <span class="n">TreapNode</span><span class="o">*</span><span class="w"> </span><span class="n">Treap</span><span class="o">::</span><span class="n">insert_helper</span><span class="p">(</span><span class="n">TreapNode</span><span class="o">*</span><span class="w"> </span><span class="n">node</span><span class="p">,</span><span class="w"> </span><span class="n">string</span><span class="w"> </span><span class="n">key</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">priority</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">node</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="k">nullptr</span><span class="p">)</span>
 <span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">TreapNode</span><span class="p">(</span><span class="n">key</span><span class="p">,</span><span class="w"> </span><span class="n">priority</span><span class="p">);</span>
@@ -659,10 +729,17 @@ document.write(`
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">node</span><span class="p">;</span>
 <span class="p">}</span>
 
+<span class="c1">// inserts a node into the treap with a given key and priority</span>
+<span class="c1">// @param key: The key of the node to insert</span>
+<span class="c1">// @param priority: The priority for the node</span>
 <span class="kt">void</span><span class="w"> </span><span class="n">Treap</span><span class="o">::</span><span class="n">insert</span><span class="p">(</span><span class="n">string</span><span class="w"> </span><span class="n">key</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">priority</span><span class="p">){</span>
 <span class="w">    </span><span class="k">this</span><span class="o">-&gt;</span><span class="n">root</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">insert_helper</span><span class="p">(</span><span class="k">this</span><span class="o">-&gt;</span><span class="n">root</span><span class="p">,</span><span class="w"> </span><span class="n">key</span><span class="p">,</span><span class="w"> </span><span class="n">priority</span><span class="p">);</span>
 <span class="p">}</span>
 
+<span class="c1">// helper function for searching a node with a given key in the treap</span>
+<span class="c1">// @param node: The root of the current subtree</span>
+<span class="c1">// @param key: The key to search for</span>
+<span class="c1">// @return The found node, or nullptr if not found</span>
 <span class="n">TreapNode</span><span class="o">*</span><span class="w"> </span><span class="n">Treap</span><span class="o">::</span><span class="n">search_helper</span><span class="p">(</span><span class="n">TreapNode</span><span class="o">*</span><span class="w"> </span><span class="n">node</span><span class="p">,</span><span class="w"> </span><span class="n">string</span><span class="w"> </span><span class="n">key</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">node</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="k">nullptr</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">node</span><span class="o">-&gt;</span><span class="n">key</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">key</span><span class="p">)</span>
 <span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">node</span><span class="p">;</span>
@@ -672,6 +749,10 @@ document.write(`
 <span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">search_helper</span><span class="p">(</span><span class="n">node</span><span class="o">-&gt;</span><span class="n">right</span><span class="p">,</span><span class="w"> </span><span class="n">key</span><span class="p">);</span>
 <span class="p">}</span>
 
+<span class="c1">// helper function for deleting a node with a given key from the Treap</span>
+<span class="c1">// @param node: The root of the current subtree</span>
+<span class="c1">// @param key: The key to delete</span>
+<span class="c1">// @return The new root of the subtree after deletion</span>
 <span class="n">TreapNode</span><span class="o">*</span><span class="w"> </span><span class="n">Treap</span><span class="o">::</span><span class="n">delete_helper</span><span class="p">(</span><span class="n">TreapNode</span><span class="o">*</span><span class="w"> </span><span class="n">node</span><span class="p">,</span><span class="w"> </span><span class="n">string</span><span class="w"> </span><span class="n">key</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">node</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="k">nullptr</span><span class="p">)</span>
 <span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">node</span><span class="p">;</span>
@@ -690,6 +771,7 @@ document.write(`
 <span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">temp</span><span class="p">;</span>
 <span class="w">        </span><span class="p">}</span>
 
+<span class="w">	</span><span class="c1">// determines which side to rotate based on priorities</span>
 <span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">node</span><span class="o">-&gt;</span><span class="n">left</span><span class="o">-&gt;</span><span class="n">priority</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">node</span><span class="o">-&gt;</span><span class="n">right</span><span class="o">-&gt;</span><span class="n">priority</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">            </span><span class="n">node</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rotate_left</span><span class="p">(</span><span class="n">node</span><span class="p">);</span>
 <span class="w">            </span><span class="n">node</span><span class="o">-&gt;</span><span class="n">left</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">delete_helper</span><span class="p">(</span><span class="n">node</span><span class="o">-&gt;</span><span class="n">left</span><span class="p">,</span><span class="w"> </span><span class="n">key</span><span class="p">);</span>
@@ -708,28 +790,49 @@ document.write(`
 
 <span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
 
+<span class="c1">// represents a node in the interval tree with a data pair and max value</span>
 <span class="k">class</span><span class="w"> </span><span class="nc">IntNode</span><span class="p">{</span>
 <span class="k">private</span><span class="o">:</span>
+<span class="w">    </span><span class="c1">// interval data as (start, end)</span>
 <span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">data</span><span class="p">;</span>
 <span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">maxValue</span><span class="p">;</span>
 <span class="w">    </span><span class="n">IntNode</span><span class="o">*</span><span class="w"> </span><span class="n">left</span><span class="p">;</span>
 <span class="w">    </span><span class="n">IntNode</span><span class="o">*</span><span class="w"> </span><span class="n">right</span><span class="p">;</span>
 <span class="k">public</span><span class="o">:</span>
+<span class="w">    </span><span class="c1">// constructor for an interval tree node with given data</span>
+<span class="w">    </span><span class="c1">// @param data: The interval data as a pair of start and end times</span>
 <span class="w">    </span><span class="n">IntNode</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">data</span><span class="p">);</span>
+<span class="w">    </span><span class="c1">// destructor for IntNode</span>
 <span class="w">    </span><span class="o">~</span><span class="n">IntNode</span><span class="p">();</span>
 
 <span class="w">    </span><span class="k">friend</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">IntTree</span><span class="p">;</span>
 <span class="p">};</span>
 
+<span class="c1">// interval Tree class that allows storage and query of interval data</span>
 <span class="k">class</span><span class="w"> </span><span class="nc">IntTree</span><span class="p">{</span>
 <span class="k">private</span><span class="o">:</span>
+<span class="w">    </span><span class="c1">// helper function to insert an interval into the tree</span>
+<span class="w">    </span><span class="c1">// @param data: The interval data as a pair of start and end times</span>
+<span class="w">    </span><span class="c1">// @param root: The root of the current subtree</span>
+<span class="w">    </span><span class="c1">// @return The new root of the subtree after insertion</span>
 <span class="w">    </span><span class="n">IntNode</span><span class="o">*</span><span class="w"> </span><span class="n">insert</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="n">IntNode</span><span class="o">*</span><span class="w"> </span><span class="n">root</span><span class="p">);</span>
+<span class="w">    </span><span class="c1">// helper function to find all intervals that overlap with a given point in the interval tree</span>
+<span class="w">    </span><span class="c1">// @param data: The point to check for overlapping intervals</span>
+<span class="w">    </span><span class="c1">// @param root: The root of the current subtree</span>
+<span class="w">    </span><span class="c1">// @param intervalList: The list to store overlapping intervals</span>
 <span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">overlap</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="n">IntNode</span><span class="o">*</span><span class="w"> </span><span class="n">root</span><span class="p">,</span><span class="w"> </span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">intervalList</span><span class="p">);</span>
 <span class="k">public</span><span class="o">:</span>
 <span class="w">    </span><span class="n">IntNode</span><span class="o">*</span><span class="w"> </span><span class="n">root</span><span class="p">;</span>
+<span class="w">    </span><span class="c1">// default constructor initializes an interval tree with no nodes</span>
 <span class="w">    </span><span class="n">IntTree</span><span class="p">();</span>
+<span class="w">    </span><span class="c1">// inserts an interval into the tree</span>
+<span class="w">    </span><span class="c1">// @param data: The interval data as a pair of start and end times</span>
 <span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">insert</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">data</span><span class="p">);</span>
+<span class="w">    </span><span class="c1">// clears the entire interval tree</span>
 <span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">clear</span><span class="p">();</span>
+<span class="w">    </span><span class="c1">// find intervals overlapping with the given point</span>
+<span class="w">    </span><span class="c1">// @param data: The point to check for overlapping intervals</span>
+<span class="w">    </span><span class="c1">// @param intervalList: The list to store overlapping intervals</span>
 <span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">overlap</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">intervalList</span><span class="p">);</span>
 <span class="p">};</span>
 </pre></div>
@@ -741,6 +844,8 @@ document.write(`
 
 <span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
 
+<span class="c1">// constructor for an interval tree node with given data</span>
+<span class="c1">// @param data: The interval data as a pair of start and end times</span>
 <span class="n">IntNode</span><span class="o">::</span><span class="n">IntNode</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">data</span><span class="p">){</span>
 <span class="w">    </span><span class="k">this</span><span class="o">-&gt;</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">data</span><span class="p">;</span>
 <span class="w">    </span><span class="k">this</span><span class="o">-&gt;</span><span class="n">maxValue</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
@@ -748,15 +853,22 @@ document.write(`
 <span class="w">    </span><span class="k">this</span><span class="o">-&gt;</span><span class="n">right</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">nullptr</span><span class="p">;</span>
 <span class="p">}</span>
 
+<span class="c1">// default constructor initializes an interval tree with no nodes</span>
 <span class="n">IntTree</span><span class="o">::</span><span class="n">IntTree</span><span class="p">(){</span>
 <span class="w">    </span><span class="k">this</span><span class="o">-&gt;</span><span class="n">root</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">nullptr</span><span class="p">;</span>
 <span class="p">}</span>
 
+<span class="c1">// inserts an interval into the interval tree and maintains the tree structure</span>
+<span class="c1">// @param data: The interval data as a pair of start and end times</span>
+<span class="c1">// @param root: The root of the current subtree</span>
+<span class="c1">// @return The new root of the subtree after insertion</span>
 <span class="n">IntNode</span><span class="o">*</span><span class="w"> </span><span class="n">IntTree</span><span class="o">::</span><span class="n">insert</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="n">IntNode</span><span class="o">*</span><span class="w"> </span><span class="n">root</span><span class="p">){</span>
+<span class="w">    </span><span class="c1">// if root is null, create a new node</span>
 <span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">root</span><span class="p">){</span>
 <span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">IntNode</span><span class="p">(</span><span class="n">data</span><span class="p">);</span>
 <span class="w">    </span><span class="p">}</span>
 
+<span class="w">    </span><span class="c1">// insert into the left subtree if the data starts earlier</span>
 <span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="n">root</span><span class="o">-&gt;</span><span class="n">left</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">data</span><span class="p">.</span><span class="n">first</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">root</span><span class="o">-&gt;</span><span class="n">left</span><span class="o">-&gt;</span><span class="n">data</span><span class="p">.</span><span class="n">first</span><span class="p">){</span>
 <span class="w">        </span><span class="n">root</span><span class="o">-&gt;</span><span class="n">left</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">insert</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="n">root</span><span class="o">-&gt;</span><span class="n">left</span><span class="p">);</span>
 <span class="w">    </span><span class="p">}</span>
@@ -764,6 +876,7 @@ document.write(`
 <span class="w">        </span><span class="n">root</span><span class="o">-&gt;</span><span class="n">right</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">insert</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="n">root</span><span class="o">-&gt;</span><span class="n">right</span><span class="p">);</span>
 <span class="w">    </span><span class="p">}</span>
 
+<span class="w">    </span><span class="c1">// update the max value if the new interval ends later</span>
 <span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="n">root</span><span class="o">-&gt;</span><span class="n">maxValue</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">data</span><span class="p">.</span><span class="n">second</span><span class="p">){</span>
 <span class="w">        </span><span class="n">root</span><span class="o">-&gt;</span><span class="n">maxValue</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">data</span><span class="p">.</span><span class="n">second</span><span class="p">;</span>
 <span class="w">    </span><span class="p">}</span>
@@ -771,25 +884,38 @@ document.write(`
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">root</span><span class="p">;</span>
 <span class="p">}</span>
 
+<span class="c1">// finds all intervals that overlap with the given point in the interval tree</span>
+<span class="c1">// @param data: The point to check for overlapping intervals</span>
+<span class="c1">// @param root: The root of the current subtree</span>
+<span class="c1">// @param intervalList: The list to store overlapping intervals</span>
 <span class="kt">void</span><span class="w"> </span><span class="n">IntTree</span><span class="o">::</span><span class="n">overlap</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="n">IntNode</span><span class="o">*</span><span class="w"> </span><span class="n">root</span><span class="p">,</span><span class="w"> </span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">intervalList</span><span class="p">){</span>
+<span class="w">    </span><span class="c1">// if root is null, there are no overlapping intervals</span>
 <span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">root</span><span class="p">){</span>
 <span class="w">        </span><span class="k">return</span><span class="p">;</span>
 <span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="c1">// check if the current node&#39;s interval overlaps with the given point</span>
 <span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="n">root</span><span class="o">-&gt;</span><span class="n">data</span><span class="p">.</span><span class="n">first</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">root</span><span class="o">-&gt;</span><span class="n">data</span><span class="p">.</span><span class="n">second</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">data</span><span class="p">){</span>
 <span class="w">        </span><span class="n">intervalList</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">make_pair</span><span class="p">(</span><span class="n">root</span><span class="o">-&gt;</span><span class="n">data</span><span class="p">.</span><span class="n">first</span><span class="p">,</span><span class="w"> </span><span class="n">root</span><span class="o">-&gt;</span><span class="n">data</span><span class="p">.</span><span class="n">second</span><span class="p">));</span>
 <span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="c1">// check the left subtree if the point is before or at the start</span>
 <span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="n">root</span><span class="o">-&gt;</span><span class="n">left</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">root</span><span class="o">-&gt;</span><span class="n">data</span><span class="p">.</span><span class="n">first</span><span class="p">){</span>
 <span class="w">        </span><span class="n">overlap</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="n">root</span><span class="o">-&gt;</span><span class="n">left</span><span class="p">,</span><span class="w"> </span><span class="n">intervalList</span><span class="p">);</span>
 <span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="c1">// check the right subtree if the point is at or after the end</span>
 <span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="n">root</span><span class="o">-&gt;</span><span class="n">right</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">root</span><span class="o">-&gt;</span><span class="n">data</span><span class="p">.</span><span class="n">second</span><span class="p">){</span>
 <span class="w">        </span><span class="n">overlap</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="n">root</span><span class="o">-&gt;</span><span class="n">right</span><span class="p">,</span><span class="w"> </span><span class="n">intervalList</span><span class="p">);</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="p">}</span>
 
+<span class="c1">// inserts an interval into the interval tree</span>
+<span class="c1">// @param data: The interval data as a pair of start and end times</span>
 <span class="kt">void</span><span class="w"> </span><span class="n">IntTree</span><span class="o">::</span><span class="n">insert</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">data</span><span class="p">){</span>
 <span class="w">    </span><span class="k">this</span><span class="o">-&gt;</span><span class="n">root</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">insert</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="k">this</span><span class="o">-&gt;</span><span class="n">root</span><span class="p">);</span>
 <span class="p">}</span>
 
+<span class="c1">// finds all intervals that overlap with a given point</span>
+<span class="c1">// @param data: The point to check for overlapping intervals</span>
+<span class="c1">// @param intervalList: The list to store overlapping intervals</span>
 <span class="kt">void</span><span class="w"> </span><span class="n">IntTree</span><span class="o">::</span><span class="n">overlap</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">intervalList</span><span class="p">){</span>
 <span class="w">    </span><span class="n">overlap</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="k">this</span><span class="o">-&gt;</span><span class="n">root</span><span class="p">,</span><span class="w"> </span><span class="n">intervalList</span><span class="p">);</span>
 <span class="p">}</span>
