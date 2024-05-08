@@ -2,17 +2,40 @@ name: Update
 
 on:
   push:
-    branches: [ "main" ]
+    branches:
+    - main
 
 jobs:
-  build:
+  book:
     runs-on: ubuntu-latest
-
+    permissions:
+      pages: write
+      id-token: write
     steps:
-      - uses: actions/checkout@v4
+    - uses: actions/checkout@v4.1.4
 
-      - name: Install JupyterBook
-        run: pip install -U jupyter-book
+    - name: Python
+      uses: actions/setup-python@v5.1.0
 
-      - name: Build JupyterBook
-        run: jupyter-book build documentation
+    - name: Jupyterbook
+      run: |
+        pip install -U jupyter-book
+
+    - name: Cache
+      uses: actions/cache@v4
+      with:
+        path: _build/.jupyter_cache
+        key: ${{ runner.os }}-jupyter-book-cache-${{ hashFiles('requirements.txt') }}
+
+    - name: Build the book
+      run: |
+        jupyter-book build --all documentation
+
+    - name: Upload
+      uses: actions/upload-pages-artifact@v2
+      with:
+        path: "documentation/_build/html"
+
+    - name: Deploy to GitHub Pages
+      id: deployment
+      uses: actions/deploy-pages@v2
