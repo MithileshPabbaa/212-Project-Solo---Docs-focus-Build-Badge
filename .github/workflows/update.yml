@@ -6,7 +6,7 @@ on:
     - main
 
 jobs:
-  book:
+  deploy-book:
     runs-on: ubuntu-latest
     permissions:
       pages: write
